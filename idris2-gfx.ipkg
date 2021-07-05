@@ -2,3 +2,5 @@ package idris2-gfx
 
 modules = Graphics.Handle
         , Graphics.Window
+        , Graphics.GL.Context
+		, Graphics.Example
