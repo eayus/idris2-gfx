@@ -1,9 +1,11 @@
 package idris2-gfx
 
-modules = Graphics.Handle
-        , Graphics.Window
-		, Graphics.Example
+modules = Graphics
+        , Graphics.Example
+        , Graphics.GL.Basics
 
+
+sourcedir = "src"
 
 main = Graphics.Example
 executable = graphics-test

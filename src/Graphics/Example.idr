@@ -1,8 +1,6 @@
 module Graphics.Example
 
-import Graphics.Window
-import Graphics.Handle
-import Graphics.GL.Context
+import Graphics
 import Util.L2Pair
 
 (>>=) : (1 _ : IO a) -> (1 _ : a -> IO b) -> IO b
