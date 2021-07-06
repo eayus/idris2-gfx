@@ -16,6 +16,7 @@ main : IO ()
 main = createGraphics $ \gfx => do
            let gfx # win = createWindow gfx OpenGL 960 640 "Title!"
            let ctxID ~~ win # ctx = createGLContext win
+           let ctx = glClear ctx
            let win # ctx = swapBuffers win ctx
            wait
            let gfx = destroyGLContext gfx ctx
