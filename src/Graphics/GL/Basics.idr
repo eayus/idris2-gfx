@@ -14,6 +14,9 @@ prim__SDL_SwapWindow : AnyPtr -> ()
 %foreign "C:glue_glClear,glue"
 prim__glClear : Int -> ()
 
+%foreign "C:glue_glClearColor,glue"
+prim__glClearColor : Double -> Double -> Double -> Double -> ()
+
 
 -- High Level
 
@@ -30,4 +33,11 @@ export
 glClear : (1 _ : GLContext id) -> GLContext id
 glClear ctx =
     let _ = prim__glClear GL_COLOR_BUFFER_BIT
+    in  ctx
+
+
+export
+glClearColor : (1 _ : GLContext id) -> Double -> Double -> Double -> Double -> GLContext id
+glClearColor ctx r g b a =
+    let _ = prim__glClearColor r g b a
     in  ctx

@@ -40,7 +40,6 @@ prim__SDL_GL_CreateContext : AnyPtr -> AnyPtr
 %foreign "C:SDL_GL_DeleteContext,libSDL2"
 prim__SDL_GL_DeleteContext : AnyPtr -> ()
 
-
 %foreign "C:SDL_Init,libSDL2"
 prim__SDL_Init : Bits32 -> Int
 
@@ -49,6 +48,9 @@ prim__SDL_Quit : ()
 
 %foreign "C:SDL_GL_SetAttribute,libSDL2"
 prim__SDL_GL_SetAttribute : Int -> Int -> Int
+
+%foreign "C:closeRequested,glue"
+prim__closeRequested : AnyPtr -> Int
 
 
 -- High level
@@ -133,3 +135,10 @@ destroyGLContext : (1 _ : Handle) -> (1 _ : GLContext id) -> Handle
 destroyGLContext gfx (MkGLContext ctxPtr) =
     let _ = prim__SDL_GL_DeleteContext ctxPtr
     in gfx
+
+
+export
+closeRequested : (1 _ : Window api props) -> LPair (Window api props) Bool
+closeRequested (MkWindow winPtr) =
+    let b = prim__closeRequested winPtr
+    in MkWindow winPtr # if b == 0 then False else True
